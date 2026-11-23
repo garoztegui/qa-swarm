@@ -77,3 +77,5 @@ las pruebas. `.env` y los reportes generados están excluidos de Git.
 ## para iniciar codex en YOLO
 
 codex --sandbox danger-full-access --ask-for-approval never
+
+npx tsx src/index.ts

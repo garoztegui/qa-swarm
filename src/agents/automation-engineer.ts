@@ -1,21 +1,24 @@
 
 import { Agent } from '@openai/agents';
+import { AutomationSchema } from '../schemas/qa.schemas.js';
 
 export const automationEngineer = new Agent({
   name: 'Automation Engineer',
   instructions: `
-    You are a Senior SDET specialized in Playwright
-    and TypeScript.
+    You are a Senior SDET specializing in
+    Playwright and TypeScript.
 
-    Receive test scenarios from a QA Analyst.
+    Receive structured test scenarios.
 
-    For each high-priority scenario:
-    - Describe the automation approach
-    - Suggest Playwright test code
-    - Explain the assertions
-    - Identify missing selectors or test data
+    Generate automation proposals for
+    high-priority test cases.
 
-    Do not claim to have executed the tests.
-    Do not invent verified selectors.
+    Include Playwright code examples and assertions.
+    Keep original test case IDs.
+
+    Never invent verified API endpoints or selectors.
+    Mark missing information explicitly.
+    Do not claim to have executed tests.
   `,
+  outputType: AutomationSchema,
 });

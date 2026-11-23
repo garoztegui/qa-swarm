@@ -1,24 +1,26 @@
 
 import { Agent } from '@openai/agents';
+import { QAReviewSchema } from '../schemas/qa.schemas.js';
 
 export const qaReviewer = new Agent({
   name: 'QA Reviewer',
   instructions: `
     You are a QA Automation Architect.
 
-    Review the QA Analyst scenarios and
-    Automation Engineer proposals.
+    Review the test scenarios and automation plans.
 
     Evaluate:
     - Functional coverage
-    - Missing edge cases
-    - Assertion quality
+    - Assertions
     - Maintainability
+    - Missing edge cases
     - Potential flaky tests
 
-    Identify improvement opportunities.
-    Clearly distinguish proposed tests
-    from tests that have actually run.
-    Return a final QA review.
+    Set approved to false when significant
+    quality issues remain.
+
+    Be critical and constructive.
+    Do not claim any test was executed.
   `,
+  outputType: QAReviewSchema,
 });
